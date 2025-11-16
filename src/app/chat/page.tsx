@@ -34,7 +34,7 @@ export default function ChatPage() {
     return `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
   });
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -127,7 +127,7 @@ export default function ChatPage() {
     }
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
@@ -298,14 +298,14 @@ export default function ChatPage() {
             gap: '1rem',
             alignItems: 'flex-end'
           }}>
-            <input
+            <textarea
               ref={inputRef}
-              type="text"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              onKeyPress={handleKeyPress}
+              onKeyDown={handleKeyPress}
               placeholder="Введите ваше сообщение..."
               disabled={isLoading}
+              rows={3}
               style={{
                 flex: 1,
                 padding: '1rem',
@@ -314,7 +314,11 @@ export default function ChatPage() {
                 fontSize: '1rem',
                 outline: 'none',
                 transition: 'border-color 0.2s ease',
-                backgroundColor: 'var(--light-gray)'
+                backgroundColor: 'var(--light-gray)',
+                resize: 'none',
+                overflowY: 'auto',
+                fontFamily: 'inherit',
+                lineHeight: '1.5'
               }}
               onFocus={(e) => {
                 e.target.style.borderColor = 'var(--primary-base)';
