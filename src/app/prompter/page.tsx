@@ -294,7 +294,7 @@ export default function PrompterPage() {
           padding: '1.5rem',
           boxShadow: '0 -2px 12px rgba(0, 0, 0, 0.05)'
         }}>
-          <div style={{
+          <div className="input-container" style={{
             display: 'flex',
             gap: '1rem',
             alignItems: 'flex-end'
@@ -307,6 +307,7 @@ export default function PrompterPage() {
               placeholder="Введите ваше сообщение..."
               disabled={isLoading}
               rows={3}
+              className="message-input"
               style={{
                 flex: 1,
                 padding: '1rem',
@@ -331,7 +332,7 @@ export default function PrompterPage() {
             <button
               onClick={sendMessage}
               disabled={!inputText.trim() || isLoading}
-              className="btn-primary"
+              className="btn-primary send-button"
               style={{
                 padding: '1rem 2rem',
                 borderRadius: '0.75rem',
@@ -383,6 +384,24 @@ export default function PrompterPage() {
         @media (max-width: 768px) {
           .container {
             padding: 1rem 0.5rem !important;
+          }
+
+          .input-container {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 0.75rem !important;
+          }
+
+          .message-input {
+            width: 100% !important;
+            flex: none !important;
+          }
+
+          .send-button {
+            width: 100% !important;
+            padding: 0.75rem 1.5rem !important;
+            justify-content: center !important;
+            margin-top: 0.5rem !important;
           }
         }
       `}</style>
