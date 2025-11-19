@@ -142,7 +142,7 @@ export default function ChatPage() {
       flexDirection: 'column'
     }}>
       {/* Header */}
-      <header style={{
+      <header className="page-header" style={{
         backgroundColor: 'var(--white)',
         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
         padding: '1rem 0',
@@ -155,13 +155,13 @@ export default function ChatPage() {
           alignItems: 'center',
           justifyContent: 'space-between'
         }}>
-          <Link href="/" style={{
+          <Link href="/" className="header-logo" style={{
             display: 'flex',
             alignItems: 'center',
             textDecoration: 'none',
             color: 'var(--text-primary)'
           }}>
-            <div style={{
+            <div className="logo-icon" style={{
               width: '40px',
               height: '40px',
               backgroundColor: 'var(--primary-base)',
@@ -176,7 +176,7 @@ export default function ChatPage() {
             }}>
               AS
             </div>
-            <span style={{
+            <span className="header-title" style={{
               fontSize: '1.5rem',
               fontWeight: 700
             }}>
@@ -184,7 +184,7 @@ export default function ChatPage() {
             </span>
           </Link>
 
-          <Link href="/" style={{
+          <Link href="/" className="header-back-link" style={{
             textDecoration: 'none',
             color: 'var(--primary-base)',
             fontWeight: 500,
@@ -221,13 +221,14 @@ export default function ChatPage() {
           {messages.map((message) => (
             <div
               key={message.id}
+              className="message-wrapper"
               style={{
                 display: 'flex',
                 justifyContent: message.sender === 'user' ? 'flex-end' : 'flex-start',
                 marginBottom: '1rem'
               }}
             >
-              <div style={{
+              <div className="message-bubble" style={{
                 maxWidth: '70%',
                 padding: '1rem 1.25rem',
                 borderRadius: message.sender === 'user' 
@@ -383,6 +384,35 @@ export default function ChatPage() {
         @media (max-width: 768px) {
           .container {
             padding: 1rem 0.5rem !important;
+          }
+
+          .page-header {
+            padding: 0.5rem 0 !important;
+          }
+
+          .logo-icon {
+            width: 32px !important;
+            height: 32px !important;
+            font-size: 1rem !important;
+            margin-right: 0.75rem !important;
+          }
+
+          .header-title {
+            font-size: 1.1rem !important;
+          }
+
+          .header-back-link {
+            font-size: 0.85rem !important;
+            gap: 0.25rem !important;
+          }
+
+          .header-back-link svg {
+            width: 16px !important;
+            height: 16px !important;
+          }
+
+          .message-bubble {
+            max-width: 95% !important;
           }
 
           .input-container {
